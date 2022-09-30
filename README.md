@@ -1,4 +1,4 @@
-# install_docker_k8s_rancher
+# install docker k8s rancher test environment
 install docker and k8s and rancher shell file ,  build a test k8s and rancher env
 
 Docker Version: 20.10.18
