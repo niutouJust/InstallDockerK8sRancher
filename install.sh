@@ -1,5 +1,5 @@
 #!/bin/bash
-swapoff -a
+swapoff -a #if you need always off,then del mount in the file /etc/fstab, like #/dev/mapper/centos-swap swap 
 setenforce 0
 systemctl stop firewalld
 systemctl disable firewalld
