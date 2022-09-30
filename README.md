@@ -1,5 +1,5 @@
 # install docker k8s rancher test environment
-## install docker and k8s and rancher shell file ,  build a test k8s and rancher env
+## install docker and k8s and rancher shell file , Just a shell file you can build a test k8s and rancher environment , one master node
 
 ### Docker Version: 20.10.18
 ### Kubenetes Version: 1.19.0
