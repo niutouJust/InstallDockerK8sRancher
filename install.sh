@@ -26,6 +26,12 @@ yum install -y yum-utils
 
 yum install docker-ce-20.10.18 docker-ce-cli-20.10.18 containerd.io -y
 
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"]
+}
+EOF
+
 systemctl enable docker --now
 
 cat > /etc/yum.repos.d/kubernetes.repo <<EOF
@@ -48,13 +54,19 @@ mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+
 chmod 700 get_helm.sh
+
 ./get_helm.sh
+
+#Preparing to install helm into /usr/local/bin
+#helm installed into /usr/local/bin/helm
+
 
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 
